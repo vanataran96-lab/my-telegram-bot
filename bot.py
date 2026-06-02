@@ -1,18 +1,18 @@
 import os
 import telebot
-import google.generativeai as genai
+from google import genai
 import threading
 import http.server
 
-# Включаем микро-сервер, чтобы Render не ругался на порты
+# Микро-сервер для обмана Render портов
 threading.Thread(target=lambda: http.server.HTTPServer(('0.0.0.0', int(os.environ.get('PORT', 10000))), http.server.BaseHTTPRequestHandler).serve_forever(), daemon=True).start()
 
 BOT_TOKEN = '8904201516:AAF1k_aXiDZUHZ81vQVdGZ9KfroDesd477c'
-AI_KEY = 'AQ.Ab8RN6J_k0nYK958LDG78mLpBUoskQgTVHxP4Zj9OfgDIXfaaA'
+AI_KEY = 'AQ.Ab8RN6KVEbBrC2cj3IM8pp3c09Zb1ske4I7P-SGCEXG-gAg3qw'
 
 bot = telebot.TeleBot(BOT_TOKEN)
-genai.configure(api_key=AI_KEY)
-model = genai.GenerativeModel("gemini-1.5-flash")
+# Используем новый официальный клиент Google GenAI
+ai_client = genai.Client(api_key=AI_KEY)
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
@@ -21,9 +21,15 @@ def start_message(message):
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
     try:
-        response = model.generate_content(message.text)
+        bot.send_chat_action(message.chat.id, 'typing')
+        # Новый синтаксис генерации контента
+        response = ai_client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=message.text,
+        )
         bot.send_message(message.chat.id, response.text)
     except Exception as e:
-        bot.send_message(message.chat.id, "Произошла ошибка в коде ИИ. Проверь ключи.")
+        # Если упадет — мы увидим настоящую причину прямо в чате
+        bot.send_message(message.chat.id, f"Ошибка ИИ: {str(e)}")
 
 bot.polling(none_stop=True)
