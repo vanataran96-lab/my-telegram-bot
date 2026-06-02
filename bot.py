@@ -2,7 +2,7 @@ import telebot
 from google import genai
 
 # === ТВОИ ГОТОВЫЕ КЛЮЧИ ===
-BOT_TOKEN = '8904201516:AAHgJQOotlCvsWSzSstH6uhiRGvuGEQlqbU'
+BOT_TOKEN = '8904201516:AAF1k_aXiDZUHZ81vQVdGZ9KfroDesd477c'
 AI_KEY = 'AQ.Ab8RN6KVEbBrC2cj3IM8pp3c09Zb1ske4I7P-SGCEXG-gAg3qw'
 # ==========================
 
