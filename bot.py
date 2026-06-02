@@ -7,7 +7,7 @@ import http.server
 # Включаем микро-сервер, чтобы Render не ругался на порты
 threading.Thread(target=lambda: http.server.HTTPServer(('0.0.0.0', int(os.environ.get('PORT', 10000))), http.server.BaseHTTPRequestHandler).serve_forever(), daemon=True).start()
 
-BOT_TOKEN = '8904201516:AAF1k_aX1DZUHZ81vQVdGZ9KfmD'
+BOT_TOKEN = '8904201516:AAF1k_aXiDZUHZ81vQVdGZ9KfroDesd477c'
 AI_KEY = 'AQ.Ab8RN6J_k0nYK958LDG78mLpBUoskQgTVHxP4Zj9OfgDIXfaaA'
 
 bot = telebot.TeleBot(BOT_TOKEN)
