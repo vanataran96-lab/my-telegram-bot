@@ -8,7 +8,7 @@ import http.server
 threading.Thread(target=lambda: http.server.HTTPServer(('0.0.0.0', int(os.environ.get('PORT', 10000))), http.server.BaseHTTPRequestHandler).serve_forever(), daemon=True).start()
 
 BOT_TOKEN = '8904201516:AAF1k_aXiDZUHZ81vQVdGZ9KfroDesd477c'
-AI_KEY = 'AQ.Ab8RN6J_k0nYK958LDG78mLpBUoskQgTVHxP4Zj9OfgDIXfaaA'
+AI_KEY = 'AIzaSyD-7e_J8N9tK02L6_mP9xR4v2bN1aZ8c'
 
 bot = telebot.TeleBot(BOT_TOKEN)
 # Используем новый официальный клиент Google GenAI
